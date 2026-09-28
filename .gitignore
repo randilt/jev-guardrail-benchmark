@@ -1,0 +1,9 @@
+.env
+.venv/
+__pycache__/
+# The prompt text is rebuilt locally with `python -m bench.data build` and is not committed:
+# it contains hateful, sexual and self-harm content from the source datasets.
+data/raw/
+data/bench_v1.jsonl
+# Raw per-call results stay local; commit a finished run under runs/<name>/ instead.
+results/
