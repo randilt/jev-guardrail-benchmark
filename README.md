@@ -20,6 +20,10 @@ It reports:
 
 From [runs/2026-09-28](runs/2026-09-28/REPORT.md) (setup and caveats in [NOTES.md](runs/2026-09-28/NOTES.md)). Figures are request side, through the gateway, with 95% intervals in the report.
 
+![Unsafe prompts caught vs. benign prompts wrongly blocked](runs/2026-09-28/charts/accuracy.png)
+
+![Latency each guardrail adds](runs/2026-09-28/charts/latency.png)
+
 | System | Unsafe caught | Benign wrongly blocked | Added latency p50 / p90 | Cost per 1,000 requests |
 |---|---|---|---|---|
 | Jev (defaults) | 69.5% | 9.7% | 447 / 537 ms | $0.024 |
@@ -114,6 +118,7 @@ python -m bench.run P3   # gateway run 2: the same again, for decisions that fli
 python -m bench.run P4   # load: 300 prompts, 20 in flight, per system (~5 min)
 python -m bench.net      # network connect times from this machine to each hosted service
 python -m bench.report   # results/REPORT.md and results/per_prompt.csv
+python -m bench.charts runs/<name>   # accuracy and latency charts (PNG + SVG) for a run folder
 python -m bench.setup_gw down
 ```
 
