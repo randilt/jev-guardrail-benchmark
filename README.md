@@ -16,6 +16,19 @@ It reports:
 - **Cost per 1,000 requests.**
 - **Run-to-run stability.**
 
+## Latest results
+
+From [runs/2026-09-28](runs/2026-09-28/REPORT.md) (setup and caveats in [NOTES.md](runs/2026-09-28/NOTES.md)). Figures are request side, through the gateway, with 95% intervals in the report.
+
+| System | Unsafe caught | Benign wrongly blocked | Added latency p50 / p90 | Cost per 1,000 requests |
+|---|---|---|---|---|
+| Jev (defaults) | 69.5% | 9.7% | 447 / 537 ms | $0.024 |
+| Jev (customised: +2 questions) | 81.1% | 13.5% | not measured in the gateway | $0.026 |
+| Azure Content Safety | 34.8% | 7.2% | 450 / 798 ms | $0.49 |
+| LLM judge (gpt-4o-mini)¹ | 85.4% | 20.3% | 1,481 / 2,271 ms | $0.074 |
+
+¹ This includes Azure OpenAI's built-in content filter, which refused 310 of the 1,197 judge calls. On the prompts the model answered itself, it caught 74.3% of unsafe prompts and blocked 12.8% of benign ones.
+
 A full run takes about 2.5 hours. At the prices in `.env.example` it costs about **$0.15 of Jev credit**, **$3 of Azure Content Safety** and **$0.50 of Azure OpenAI**.
 
 ## Fairness rules
