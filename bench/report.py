@@ -110,7 +110,8 @@ def main():
     w("# Jev content-safety benchmark\n")
     w(f"Test set: **{len(rows)} prompts** ({n_unsafe} unsafe, {len(rows) - n_unsafe} benign) from JailbreakBench (MIT), "
       "XSTest (CC-BY-4.0), OpenAI's moderation evaluation set (MIT) and TrustAIRLab's in-the-wild prompts (MIT). "
-      "Request-side screening only. Every system uses its shipped defaults. Percentages show 95% Wilson intervals.\n")
+      "Request-side screening only. Every system uses its shipped defaults, apart from the customised Jev variant. "
+      "Percentages show 95% Wilson intervals.\n")
 
     # ---- headline
     w("## Accuracy\n")

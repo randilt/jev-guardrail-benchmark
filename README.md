@@ -27,13 +27,15 @@ From [runs/2026-09-28](runs/2026-09-28/REPORT.md) (setup and caveats in [NOTES.m
 | System | Unsafe caught | Benign wrongly blocked | Added latency p50 / p90 | Cost per 1,000 requests |
 |---|---|---|---|---|
 | Jev (defaults) | 69.5% | 9.7% | 447 / 537 ms | $0.024 |
-| Jev (customised: +2 questions) | 81.1% | 13.5% | not measured in the gateway | $0.026 |
+| Jev (customised: +2 questions) | 81.1% | 13.5% | 455 / 507 ms² | $0.026 |
 | Azure Content Safety | 34.8% | 7.2% | 450 / 798 ms | $0.49 |
 | LLM judge (gpt-4o-mini)¹ | 85.4% | 20.3% | 1,481 / 2,271 ms | $0.074 |
 
 ¹ This includes Azure OpenAI's built-in content filter, which refused 310 of the 1,197 judge calls. On the prompts the model answered itself, it caught 74.3% of unsafe prompts and blocked 12.8% of benign ones.
 
-A full run takes about 2.5 hours. At the prices in `.env.example` it costs about **$0.15 of Jev credit**, **$3 of Azure Content Safety** and **$0.50 of Azure OpenAI**.
+² Measured calling Jev directly, not through the gateway. For the default questions, direct and in-gateway latency were within 25 ms of each other.
+
+The published run took about 2 hours. It used about **$0.14 of Jev credit**, **$2 of Azure Content Safety** (5,243 text records) and **$0.15 of Azure OpenAI** for the judge, at the prices in `.env.example`. The judge figure counts only the calls the model answered; the 720 calls refused by Azure's content filter recorded no token usage.
 
 ## Fairness rules
 
@@ -115,7 +117,7 @@ python -m bench.run P0   # pilot: 63 prompts through every system (a few minutes
 python -m bench.run P1   # direct scores for Jev (both batteries) and Azure: feeds the threshold sweeps (~3 min)
 python -m bench.run P2   # gateway run 1: one call at a time, all systems interleaved per prompt (~1 h)
 python -m bench.run P3   # gateway run 2: the same again, for decisions that flip between runs (~1 h)
-python -m bench.run P4   # load: 300 prompts, 20 in flight, per system (~5 min)
+python -m bench.run P4   # load: 300 prompts, 20 in flight, per system (~2 min)
 python -m bench.net      # network connect times from this machine to each hosted service
 python -m bench.report   # results/REPORT.md and results/per_prompt.csv
 python -m bench.charts runs/<name>   # accuracy and latency charts (PNG + SVG) for a run folder

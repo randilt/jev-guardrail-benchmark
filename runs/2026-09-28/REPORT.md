@@ -1,6 +1,6 @@
 # Jev content-safety benchmark
 
-Test set: **1197 prompts** (597 unsafe, 600 benign) from JailbreakBench (MIT), XSTest (CC-BY-4.0), OpenAI's moderation evaluation set (MIT) and TrustAIRLab's in-the-wild prompts (MIT). Request-side screening only. Every system uses its shipped defaults. Percentages show 95% Wilson intervals.
+Test set: **1197 prompts** (597 unsafe, 600 benign) from JailbreakBench (MIT), XSTest (CC-BY-4.0), OpenAI's moderation evaluation set (MIT) and TrustAIRLab's in-the-wild prompts (MIT). Request-side screening only. Every system uses its shipped defaults, apart from the customised Jev variant. Percentages show 95% Wilson intervals.
 
 ## Accuracy
 

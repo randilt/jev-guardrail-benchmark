@@ -11,10 +11,10 @@ The first full run. The results are in [REPORT.md](REPORT.md), the decisions by 
   - `azure-content-safety-content-moderation` v1.0.2, with its defaults.
 - **Jev:** `https://api.typesafe.ai`, model `jev-latest`.
 - **Azure AI Content Safety:** Standard S0 in East US.
-- **LLM judge:** Azure OpenAI `gpt-4o-mini` (2024-07-18), reached through the gateway's LLM provider route, which has only api-key-auth. The deployment's default content filter was on.
-- **Network from the test machine** (median TCP + TLS connect): Jev 114 ms, Azure OpenAI 894 ms, Azure Content Safety 921 ms. Both Azure services were far from the test machine, which adds to their latency. Jev was much closer.
+- **LLM judge:** Azure OpenAI `gpt-4o-mini` (2024-07-18), reached through the gateway's LLM provider route, which has only api-key-auth. Azure OpenAI's content filter was on for the deployment.
+- **Network from the test machine** (median TCP + TLS connect): Jev 114 ms, Azure OpenAI 894 ms, Azure Content Safety 921 ms. Connect times to both Azure services were about 8 times Jev's, which adds to their measured latency.
 - **Passes:** P0 to P4 as described in the README. The two calls that errored (one Azure Content Safety read timeout in P1, one judge read timeout in P2) were re-run with `--retry-errors`. The report uses the re-run results.
-- **Jev spend:** $0.137 of credit, computed from recorded usage. It matched the change in the TypeSafe dashboard balance at the checkpoint.
+- **Jev spend:** $0.137 of credit, computed from recorded usage. It was consistent with the change in the TypeSafe dashboard balance, checked once during the run.
 
 ## Reading the results
 
