@@ -1,5 +1,12 @@
 # Jev guardrail benchmark
 
+This repo holds two benchmarks of the TypeSafe Jev guardrails in WSO2 AI Gateway:
+
+| Benchmark | What it measures | Latest run |
+|---|---|---|
+| **Content safety** (this page) | Screening of 1,197 labelled prompts by the Jev content-safety policy, against Azure AI Content Safety and an LLM judge | [runs/2026-09-28](runs/2026-09-28/REPORT.md) |
+| **[Agent workflow](agent/README.md)** | A real agent (AgentDojo, gpt-4o) doing multi-step tasks, with prompt-injection attacks in tool results, through the gateway with and without the Jev guardrails | [runs/2026-09-30-agent](runs/2026-09-30-agent/REPORT.md) |
+
 This benchmark measures how well the **TypeSafe Jev content-safety guardrail** in WSO2 AI Gateway screens prompts, and compares it with two alternatives on the same prompts:
 
 | System | What it is |
